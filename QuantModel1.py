@@ -14,7 +14,7 @@ data["xom_close"] = xom["Close"]
 
 data["xom_future_return"] = data["xom_close"].pct_change().shift(-1)
 
-# Oil-only features — question is "how does oil move XOM?", not "predict XOM from itself"
+# Oil features — question is "how does oil move XOM?", not "predict XOM from itself"
 data["oil_return"] = data["oil_close"].pct_change()
 data["oil_return_lag1"] = data["oil_return"].shift(1)
 data["oil_return_lag2"] = data["oil_return"].shift(2)
@@ -71,3 +71,4 @@ print("\nMonthly strategy returns:")
 monthly = results["strategy_return"].resample("ME").sum()
 for date, ret in monthly.items():
     print(f"  {date.strftime('%b %Y')}: {ret:+.1%}")
+
