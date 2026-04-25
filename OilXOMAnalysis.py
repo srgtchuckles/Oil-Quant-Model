@@ -14,7 +14,7 @@ data["xom_return"] = data["xom_close"].pct_change()
 data["oil_vol20"] = data["oil_return"].rolling(20).std()
 
 # Does oil lead XOM, and by how many days?
-print("--- Does oil LEAD XOM? (correlation at each lag) ---")
+print("Does oil LEAD XOM? (correlation at each lag)")
 for lag in range(6):
     corr = data["oil_return"].shift(lag).corr(data["xom_return"])
     print(f"  Oil return lag {lag} vs XOM return: {corr:.3f}")
@@ -49,4 +49,5 @@ axes[2].set_xlabel("Oil return")
 axes[2].set_ylabel("XOM return")
 
 plt.tight_layout()
+plt.savefig("OilXOMAnalysis.png", dpi=150)
 plt.show()
